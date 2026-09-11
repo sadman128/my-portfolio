@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sadman Hossain Sajid — Software Engineer. Spring Boot, React.js, Java, AWS. Projects and contact.">
+  <meta property="og:title" content="Sadman Hossain Sajid | Software Engineer">
+  <meta property="og:description" content="Software Engineer specializing in Spring Boot and React.js.">
+  <title>Sadman Hossain Sajid | Software Engineer</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2358a6ff'/><text x='50' y='71' font-family='Poppins,system-ui,sans-serif' font-size='62' font-weight='700' text-anchor='middle' fill='white'>S</text></svg>">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+    <ion-icon name="sunny-outline" class="light-icon"></ion-icon>
+    <ion-icon name="moon-outline" class="dark-icon"></ion-icon>
+  </button>
+
+  <main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="./dp.png" alt="Sadman Hossain Sajid" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Sadman Hossain Sajid">Sadman Hossain Sajid</h1>
+          <br>
+          <p class="title">Software Engineer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+      </div>
+
+      <div class="sidebar-info_more">
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:sadmanhossain1282@gmail.com" class="contact-link">sadmanhossain1282@gmail.com</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+              <a href="tel:+8801834896054" class="contact-link">+880 1834-896054</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+              <address>Kazipara, Mirpur, Dhaka, Bangladesh</address>
+            </div>
+          </li>
+
+        </ul>
+
+        <!-- CV Download -->
+        <div class="separator"></div>
+        <a href="https://docs.google.com/document/d/1koy7Xcb4y7BEyMqRHLwwIQZ_yNKyFqGEBrEtYP0DvVg/edit?usp=sharing" target="_blank" rel="noopener" class="cv-btn">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>View CV</span>
+        </a>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+          <li class="social-item">
+            <a href="https://www.facebook.com/sadmanhossain1282/" class="social-link" target="_blank" rel="noopener" title="Facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/sadman-hossain-sajid" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://discord.com/users/634826720293290004" class="social-link" target="_blank" rel="noopener" title="Discord">
+              <ion-icon name="logo-discord"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://github.com/sadman128" class="social-link" target="_blank" rel="noopener" title="GitHub">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <!-- NAVBAR -->
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>About</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Projects</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- ABOUT -->
+      <article class="about active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I'm a Software Engineer and fourth-year CSE student, proficient in building robust web applications
+            using <strong>Spring Boot</strong> and <strong>React.js</strong>. I maintain a strong foundation in
+            Data Structures and Algorithms, with practical experience deploying automated systems on AWS EC2.
+          </p>
+          <p>
+            Beyond core development, I explore software optimization and modding, improving simulation environments
+            and solving problems through code. Currently expanding into <strong>Data Science and AI</strong>,
+            with thesis research on <strong>Adversarial Robustness in Network Intrusion Detection Systems, robust accuracy 89%</strong>.
+          </p>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="service">
+          <h3 class="h3 service-title">What I'm doing</h3>
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="layers-outline"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Full-Stack Development</h4>
+                <p class="service-item-text">
+                  Building end-to-end web applications with Spring Boot backends and React frontends.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="server-outline"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">REST API Design</h4>
+                <p class="service-item-text">
+                  Designing secure, scalable REST APIs with Spring Security, JWT authentication, and microservices architecture.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="hardware-chip-outline"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Science & AI</h4>
+                <p class="service-item-text">
+                  Exploring machine learning with Python, MobileNetV2, OpenCV for real-world computer vision applications.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="cloud-outline"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Cloud & DevOps</h4>
+                <p class="service-item-text">
+                  Deploying and managing applications on AWS EC2 with PM2 for 24/7 uptime and process recovery.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+              </article>
+
+      <!-- RESUME -->
+      <article class="resume" data-page="resume">
+      </article>
+
+      <!-- PROJECTS -->
+      <article class="portfolio projects" data-page="projects">
+      </article>
+
+      <!-- CONTACT -->
+      <article class="contact" data-page="contact">
+      </article>
+
+    </div>
+  </main>
+
+  <script src="./js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
