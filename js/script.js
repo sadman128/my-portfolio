@@ -54,3 +54,23 @@ navigationLinks.forEach((link) => {
   });
 });
 
+
+// ============================================================
+// SKILL BAR ANIMATION (Intersection Observer)
+// ============================================================
+function animateSkillBars() {
+  const fills = document.querySelectorAll('.skill-progress-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.style.width;
+        fill.style.width = '0%';
+        setTimeout(() => { fill.style.width = width; }, 100);
+        observer.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => observer.observe(f));
+}
+animateSkillBars();
