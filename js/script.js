@@ -56,6 +56,62 @@ navigationLinks.forEach((link) => {
 
 
 // ============================================================
+// PORTFOLIO FILTER
+// ============================================================
+const selectBox = document.querySelector('[data-select]');
+const selectItems = document.querySelectorAll('[data-select-item]');
+const selectValueEl = document.querySelector('[data-select-value]');
+const filterBtns = document.querySelectorAll('[data-filter-btn]');
+
+if (selectBox) {
+  selectBox.addEventListener('click', () => selectBox.classList.toggle('active'));
+}
+
+let currentFilter = 'all';
+
+function applyFilter(value) {
+  currentFilter = value.toLowerCase().trim();
+  const items = document.querySelectorAll('[data-filter-item]');
+  items.forEach(item => {
+    if (currentFilter === 'all') {
+      item.classList.add('active');
+    } else {
+      const cats = (item.dataset.category || '').toLowerCase().trim().split(/\s+/);
+      item.classList.toggle('active', cats.includes(currentFilter));
+    }
+  });
+  const emptyEl = document.getElementById('portfolio-empty');
+  if (emptyEl) {
+    const anyVisible = [...items].some(it => it.classList.contains('active'));
+    emptyEl.style.display = anyVisible ? 'none' : 'flex';
+  }
+}
+
+if (selectItems) {
+  selectItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const val = item.textContent.trim();
+      if (selectValueEl) selectValueEl.textContent = val;
+      if (selectBox) selectBox.classList.remove('active');
+      applyFilter(val);
+    });
+  });
+}
+
+let lastFilterBtn = filterBtns[0];
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.textContent.trim();
+    if (selectValueEl) selectValueEl.textContent = val;
+    applyFilter(val);
+    if (lastFilterBtn) lastFilterBtn.classList.remove('active');
+    btn.classList.add('active');
+    lastFilterBtn = btn;
+  });
+});
+
+
+// ============================================================
 // SKILL BAR ANIMATION (Intersection Observer)
 // ============================================================
 function animateSkillBars() {

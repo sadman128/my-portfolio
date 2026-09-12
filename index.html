@@ -216,6 +216,53 @@
           </ul>
         </section>
 
+        <!-- GITHUB CONTRIBUTIONS -->
+        <section class="github-section">
+          <div class="section-header">
+            <h3 class="h3">GitHub Contributions</h3>
+            <a href="https://github.com/sadman128" target="_blank" rel="noopener" class="github-profile-link">
+              <ion-icon name="logo-github"></ion-icon>
+              <span>@sadman128</span>
+            </a>
+          </div>
+          <div class="contribution-graph-wrapper">
+            <div id="contribution-graph" class="contribution-graph">
+              <div class="loading-skeleton">
+                <div class="skeleton-text">Loading contribution graph...</div>
+              </div>
+            </div>
+            <div class="contribution-legend">
+              <span class="legend-label">Less</span>
+              <div class="legend-squares">
+                <span class="legend-sq" data-level="0"></span>
+                <span class="legend-sq" data-level="1"></span>
+                <span class="legend-sq" data-level="2"></span>
+                <span class="legend-sq" data-level="3"></span>
+                <span class="legend-sq" data-level="4"></span>
+              </div>
+              <span class="legend-label">More</span>
+            </div>
+          </div>
+          <div class="github-stats-row" id="github-stats-row">
+            <div class="gh-stat-card">
+              <span class="gh-stat-value" id="gh-repos">28</span>
+              <span class="gh-stat-label">Repositories</span>
+            </div>
+            <div class="gh-stat-card">
+              <span class="gh-stat-value" id="gh-stars">24</span>
+              <span class="gh-stat-label">Stars</span>
+            </div>
+            <div class="gh-stat-card">
+              <span class="gh-stat-value" id="gh-commits">120</span>
+              <span class="gh-stat-label">Contributions</span>
+            </div>
+            <div class="gh-stat-card">
+              <span class="gh-stat-value" id="gh-streak">3</span>
+              <span class="gh-stat-label">Day Streak</span>
+            </div>
+          </div>
+        </section>
+
               </article>
 
 <!-- RESUME -->
@@ -426,18 +473,67 @@
 
       </article>
 
-            <!-- PROJECTS -->
+      <!-- PROJECTS -->
       <article class="portfolio projects" data-page="projects">
+
+        <header>
+          <h2 class="h2 article-title">Projects</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+            <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
+            <li class="filter-item"><button data-filter-btn>Java</button></li>
+            <li class="filter-item"><button data-filter-btn>JavaScript</button></li>
+            <li class="filter-item"><button data-filter-btn>Python</button></li>
+            <li class="filter-item"><button data-filter-btn>Others</button></li>
+          </ul>
+
+          <div class="filter-select-box">
+            <button class="filter-select" data-select>
+              <div class="select-value" data-select-value>Select category</div>
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+            </button>
+            <ul class="select-list">
+              <li class="select-item"><button data-select-item>All</button></li>
+              <li class="select-item"><button data-select-item>Java</button></li>
+              <li class="select-item"><button data-select-item>JavaScript</button></li>
+              <li class="select-item"><button data-select-item>Python</button></li>
+              <li class="select-item"><button data-select-item>Others</button></li>
+            </ul>
+          </div>
+
+          <div id="portfolio-loading" class="portfolio-loading">
+            <div class="loading-spinner"></div>
+            <p>Loading projects from GitHub...</p>
+          </div>
+
+          <ul class="project-list" id="project-list">
+            <!-- Populated by github.js -->
+          </ul>
+
+          <div id="portfolio-empty" class="portfolio-empty" style="display:none;">
+            <ion-icon name="folder-open-outline"></ion-icon>
+            <p>No projects found for this category.</p>
+          </div>
+
+        </section>
+
       </article>
 
-      <!-- CONTACT -->
+            <!-- CONTACT -->
       <article class="contact" data-page="contact">
       </article>
 
     </div>
   </main>
 
+  <script src="./js/config.js"></script>
   <script src="./js/script.js"></script>
+  <script src="./js/github.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
