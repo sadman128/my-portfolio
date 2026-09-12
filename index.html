@@ -263,9 +263,25 @@
           </div>
         </section>
 
-              </article>
+        <!-- LEETCODE STATS -->
+        <section class="leetcode-section">
+          <div class="section-header">
+            <h3 class="h3">LeetCode Stats</h3>
+            <a href="https://leetcode.com/u/sadman_hossain_sajid/" target="_blank" rel="noopener" class="leetcode-profile-link">
+              <span>View Profile</span>
+              <ion-icon name="open-outline"></ion-icon>
+            </a>
+          </div>
+          <div id="leetcode-card" class="leetcode-card">
+            <div class="loading-skeleton">
+              <div class="skeleton-text">Loading LeetCode stats...</div>
+            </div>
+          </div>
+        </section>
 
-<!-- RESUME -->
+      </article>
+
+      <!-- RESUME -->
       <article class="resume" data-page="resume">
 
         <header>
@@ -524,8 +540,49 @@
 
       </article>
 
-            <!-- CONTACT -->
+      <!-- CONTACT -->
       <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <!-- Map -->
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              title="Location map — East Kazipara, Dhaka"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0!2d90.3722744!3d23.7993537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c732b114e169%3A0x43b3a7043ed48d1d!2sEast%20Kazipara%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+                <!-- Contact Grid: Left Form -->
+        <div class="contact-grid" style="grid-template-columns: 1fr;">
+          <!-- Left: Contact Form -->
+<section class="contact-form">
+            <h3 class="h3 form-title">Send a Message</h3>
+            <form action="#" class="form" data-form novalidate>
+
+              <div class="input-wrapper">
+                <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+                <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              </div>
+
+              <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+              <div id="form-status" class="form-status" style="display:none;"></div>
+
+              <button class="form-btn" type="submit" data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+
+            </form>
+          </section>
+
+                  </div>
+
       </article>
 
     </div>
@@ -534,6 +591,7 @@
   <script src="./js/config.js"></script>
   <script src="./js/script.js"></script>
   <script src="./js/github.js"></script>
+  <script src="./js/leetcode.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 

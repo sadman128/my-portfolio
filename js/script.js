@@ -112,6 +112,122 @@ filterBtns.forEach(btn => {
 
 
 // ============================================================
+// CONTACT FORM — Discord Webhook
+// ============================================================
+const form = document.querySelector('[data-form]');
+const formInputs = document.querySelectorAll('[data-form-input]');
+const formBtn = document.querySelector('[data-form-btn]');
+const formStatus = document.getElementById('form-status');
+
+function showFormStatus(msg, type) {
+  if (!formStatus) return;
+  formStatus.textContent = msg;
+  formStatus.className = 'form-status ' + type;
+  formStatus.style.display = 'block';
+  setTimeout(() => {
+    if (formStatus) formStatus.style.display = 'none';
+  }, 5000);
+}
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fullnameInput = form.querySelector('[name="fullname"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const messageInput = form.querySelector('[name="message"]');
+
+    const fullname = fullnameInput ? fullnameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const message = messageInput ? messageInput.value.trim() : '';
+
+    if (!fullname || !email || !message) {
+      showFormStatus('Please fill in all fields.', 'error');
+      if (!fullname && fullnameInput) fullnameInput.focus();
+      else if (!email && emailInput) emailInput.focus();
+      else if (!message && messageInput) messageInput.focus();
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showFormStatus('Please enter a valid email address.', 'error');
+      if (emailInput) emailInput.focus();
+      return;
+    }
+
+    let webhookUrl = '';
+    if (typeof CONFIG !== 'undefined' && CONFIG.DISCORD_WEBHOOK_URL) {
+      webhookUrl = CONFIG.DISCORD_WEBHOOK_URL.trim();
+    }
+    if (!webhookUrl) {
+      const stored = localStorage.getItem('portfolio_discord_webhook');
+      if (stored) webhookUrl = stored.trim();
+    }
+
+    const btnSpan = formBtn ? formBtn.querySelector('span') : null;
+    const origText = btnSpan ? btnSpan.textContent : 'Send Message';
+    if (formBtn) formBtn.setAttribute('disabled', '');
+    if (btnSpan) btnSpan.textContent = 'Sending...';
+
+    if (webhookUrl && webhookUrl.startsWith('http')) {
+      const payload = {
+        username: 'Portfolio Contact Bot',
+        avatar_url: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+        embeds: [{
+          title: '📬 New Contact Message Received!',
+          color: 0x5865f2,
+          fields: [
+            { name: '👤 Sender Name', value: fullname, inline: true },
+            { name: '📧 Sender Email', value: email, inline: true },
+            { name: '💬 Message', value: message }
+          ],
+          footer: { text: 'Sadman Hossain Sajid — Portfolio' },
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      try {
+        const res = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          showFormStatus('Message sent successfully!', 'success');
+          form.reset();
+        } else {
+          console.warn('Discord webhook status:', res.status);
+          throw new Error('Webhook error ' + res.status);
+        }
+      } catch (err) {
+        console.warn('Webhook delivery error:', err);
+        showFormStatus('Message send failed', 'error');
+      } finally {
+        if (formBtn) formBtn.removeAttribute('disabled');
+        if (btnSpan) btnSpan.textContent = origText;
+      }
+    } else {
+      // No webhook configured
+      showFormStatus('Message send failed', 'error');
+      if (formBtn) formBtn.removeAttribute('disabled');
+      if (btnSpan) btnSpan.textContent = origText;
+    }
+  });
+}
+
+// ============================================================
+// CLOSE DROPDOWN ON OUTSIDE CLICK
+// ============================================================
+document.addEventListener('click', (e) => {
+  if (selectBox && !selectBox.contains(e.target)) {
+    selectBox.classList.remove('active');
+  }
+});
+
+
+// ============================================================
 // SKILL BAR ANIMATION (Intersection Observer)
 // ============================================================
 function animateSkillBars() {
