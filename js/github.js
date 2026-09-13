@@ -11,7 +11,6 @@
 
 const GH_USERNAME = (typeof CONFIG !== 'undefined') ? CONFIG.GITHUB_USERNAME : 'sadman128';
 const GH_TOKEN = (typeof CONFIG !== 'undefined') ? CONFIG.GITHUB_TOKEN : '';
-const GH_STARS = (typeof CONFIG !== 'undefined' && CONFIG.GITHUB_STARS !== undefined) ? CONFIG.GITHUB_STARS : 24;
 
 // Baseline verified contributions from sadman128's GitHub profile (117 total in past year)
 const BASELINE_CONTRIBUTIONS = {
@@ -568,7 +567,7 @@ async function fetchStarredCount() {
   } catch (e) {
     console.warn('Could not fetch stars from API:', e);
   }
-  return GH_STARS;
+  return 0;
 }
 
 async function fetchUserStats(repos) {
@@ -587,9 +586,7 @@ async function fetchUserStats(repos) {
 async function initGitHub() {
   // Baseline initial stats
   const ghReposEl = document.getElementById('gh-repos');
-  const ghStarsEl = document.getElementById('gh-stars');
   if (ghReposEl) ghReposEl.textContent = '28';
-  if (ghStarsEl) ghStarsEl.textContent = String(GH_STARS);
 
   // 1. Immediately render initial contribution graph with months and weekdays (no loading delay)
   renderContributionGraph(null);

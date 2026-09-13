@@ -19,11 +19,6 @@
 
 <body>
 
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
-    <ion-icon name="sunny-outline" class="light-icon"></ion-icon>
-    <ion-icon name="moon-outline" class="dark-icon"></ion-icon>
-  </button>
 
   <main>
 
@@ -31,9 +26,18 @@
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
-        <figure class="avatar-box">
-          <img src="./dp.png" alt="Sadman Hossain Sajid" width="80">
-        </figure>
+        <button class="sidebar-close-btn" data-sidebar-close aria-label="Close contacts">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <div class="avatar-wrapper" data-avatar-btn role="button" tabindex="0" aria-label="Toggle profile information" aria-expanded="false">
+          <figure class="avatar-box">
+            <img src="./dp.png" alt="Sadman Hossain Sajid" width="80">
+          </figure>
+          <span class="avatar-badge" aria-hidden="true">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </span>
+        </div>
 
         <div class="info-content">
           <h1 class="name" title="Sadman Hossain Sajid">Sadman Hossain Sajid</h1>
@@ -119,6 +123,8 @@
       </div>
     </aside>
 
+    <div class="sidebar-overlay" data-sidebar-overlay></div>
+
     <!-- MAIN CONTENT -->
     <div class="main-content">
 
@@ -138,6 +144,11 @@
             <button class="navbar-link" data-nav-link>Contact</button>
           </li>
         </ul>
+
+        <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <ion-icon name="sunny-outline" class="light-icon"></ion-icon>
+          <ion-icon name="moon-outline" class="dark-icon"></ion-icon>
+        </button>
       </nav>
 
       <!-- ABOUT -->
@@ -249,7 +260,7 @@
               <span class="gh-stat-label">Repositories</span>
             </div>
             <div class="gh-stat-card">
-              <span class="gh-stat-value" id="gh-stars">24</span>
+              <span class="gh-stat-value" id="gh-stars">0</span>
               <span class="gh-stat-label">Stars</span>
             </div>
             <div class="gh-stat-card">
@@ -557,10 +568,11 @@
           </figure>
         </section>
 
-                <!-- Contact Grid: Left Form, Right Discord Long Profile -->
+        <!-- Contact Grid: Left Form, Right Discord Long Profile -->
         <div class="contact-grid">
+
           <!-- Left: Contact Form -->
-<section class="contact-form">
+          <section class="contact-form">
             <h3 class="h3 form-title">Send a Message</h3>
             <form action="#" class="form" data-form novalidate>
 
@@ -592,7 +604,7 @@
             </div>
           </section>
 
-                </div>
+        </div>
 
       </article>
 

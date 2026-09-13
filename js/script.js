@@ -17,20 +17,76 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // ============================================================
-// SIDEBAR TOGGLE
+// SIDEBAR TOGGLE (Profile Pic, Close Button & Overlay)
 // ============================================================
 const sidebar = document.querySelector('[data-sidebar]');
+const avatarBtn = document.querySelector('[data-avatar-btn]');
 const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+const sidebarCloseBtn = document.querySelector('[data-sidebar-close]');
+const sidebarOverlay = document.querySelector('[data-sidebar-overlay]');
 
-if (sidebar && sidebarBtn) {
-  sidebarBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
+function closeSidebar() {
+  if (!sidebar) return;
+  sidebar.classList.remove('active');
+  document.body.classList.remove('sidebar-open');
+  if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+  if (sidebarBtn) {
     const span = sidebarBtn.querySelector('span');
-    if (span) {
-      span.textContent = sidebar.classList.contains('active') ? 'Hide Contacts' : 'Show Contacts';
+    if (span) span.textContent = 'Show Contacts';
+  }
+}
+
+function openSidebar() {
+  if (!sidebar) return;
+  sidebar.classList.add('active');
+  document.body.classList.add('sidebar-open');
+  if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'true');
+  if (sidebarBtn) {
+    const span = sidebarBtn.querySelector('span');
+    if (span) span.textContent = 'Hide Contacts';
+  }
+}
+
+function toggleSidebar() {
+  if (!sidebar) return;
+  if (sidebar.classList.contains('active')) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+}
+
+if (avatarBtn) {
+  avatarBtn.addEventListener('click', toggleSidebar);
+  avatarBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleSidebar();
     }
   });
 }
+
+if (sidebarBtn) {
+  sidebarBtn.addEventListener('click', toggleSidebar);
+}
+
+if (sidebarCloseBtn) {
+  sidebarCloseBtn.addEventListener('click', closeSidebar);
+}
+
+if (sidebarOverlay) {
+  sidebarOverlay.addEventListener('click', closeSidebar);
+}
+
+// Close sidebar on mobile when clicking outside
+document.addEventListener('click', (e) => {
+  if (sidebar && sidebar.classList.contains('active')) {
+    const isMobile = window.matchMedia('(max-aspect-ratio: 1/1), (max-width: 900px)').matches;
+    if (isMobile && !sidebar.contains(e.target) && !e.target.closest('[data-avatar-btn]')) {
+      closeSidebar();
+    }
+  }
+});
 
 // ============================================================
 // PAGE NAVIGATION
@@ -53,7 +109,6 @@ navigationLinks.forEach((link) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
-
 
 // ============================================================
 // PORTFOLIO FILTER
@@ -109,7 +164,6 @@ filterBtns.forEach(btn => {
     lastFilterBtn = btn;
   });
 });
-
 
 // ============================================================
 // CONTACT FORM — Discord Webhook
@@ -225,7 +279,6 @@ document.addEventListener('click', (e) => {
     selectBox.classList.remove('active');
   }
 });
-
 
 // ============================================================
 // SKILL BAR ANIMATION (Intersection Observer)
