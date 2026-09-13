@@ -129,10 +129,14 @@ function applyFilter(value) {
   const items = document.querySelectorAll('[data-filter-item]');
   items.forEach(item => {
     if (currentFilter === 'all') {
-      item.classList.add('active');
+      // "All" tab: locked repos always visible + any repo with ≥1 star
+      const isLocked = item.dataset.locked === 'true';
+      const stars    = parseInt(item.dataset.stars || '0', 10);
+      item.classList.toggle('active', isLocked || stars >= 1);
     } else {
-      const cats = (item.dataset.category || '').toLowerCase().trim().split(/\s+/);
-      item.classList.toggle('active', cats.includes(currentFilter));
+      // Category tabs: show every repo in that category (regardless of stars)
+      const cat = (item.dataset.category || '').toLowerCase().trim();
+      item.classList.toggle('active', cat === currentFilter);
     }
   });
   const emptyEl = document.getElementById('portfolio-empty');
