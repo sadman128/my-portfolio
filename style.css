@@ -1575,192 +1575,127 @@ textarea.form-input { height: 9.5rem; }
   #RESPONSIVE — TABLET (<=900px)
 \*-----------------------------------*/
 
+/* ============================================================
+   MOBILE — single-column stacked layout
+   Triggers at aspect-ratio < 1:1 OR width <= 900px
+   ============================================================ */
 @media (max-aspect-ratio: 1/1), (max-width: 900px) {
+
+  /* Stack sidebar on top, content below */
   main {
-    grid-template-columns: 70px minmax(0, 1fr);
-    padding: 0.75rem 0.5rem;
-    gap: 0.625rem;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
   }
 
+  /* Sidebar: compact card at the top, centered — same feel as desktop */
   .sidebar {
-    position: sticky;
-    top: 0.75rem;
-    padding: 0.5rem 0.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 1rem;
-    height: fit-content;
-    z-index: 10;
-    transition: all 0.3s ease;
+    position: static;
+    padding: 1.5rem 1.25rem 0;
+    border-radius: 1.25rem;
   }
 
-  .avatar-wrapper {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+  /* Close button and overlay not needed in stacked layout */
+  .sidebar-close-btn { display: none !important; }
+  .sidebar-overlay    { display: none !important; }
+  .avatar-badge       { display: none !important; }
+
+  /* Centered column — same as desktop */
+  .sidebar-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
   }
+
+  .avatar-wrapper { cursor: default; }
   .avatar-wrapper:hover .avatar-box,
-  .avatar-wrapper:focus-visible .avatar-box {
-    box-shadow: 0 0 36px var(--accent-glow-strong);
-    transform: scale(1.04);
-  }
+  .avatar-wrapper:focus-visible .avatar-box { transform: none; }
 
-  .avatar-box {
-    width: 48px;
-    height: 48px;
-  }
+  .avatar-box { width: 5rem; height: 5rem; }
 
-  .avatar-badge {
-    display: flex;
-    position: absolute;
-    bottom: -2px;
-    right: -2px;
-    width: 1.35rem;
-    height: 1.35rem;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    border: 2px solid var(--sidebar-bg);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
-  }
-
-  /* When mobile drawer is open */
-  .sidebar.active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: min(340px, 88vw);
-    height: 100vh;
-    z-index: 1000;
-    border-radius: 0 1.5rem 1.5rem 0;
-    overflow-y: auto;
-    padding: 2.5rem 1.5rem 2rem;
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.85);
-    background: var(--sidebar-bg);
-    animation: slideDrawer 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .sidebar.active .avatar-box {
-    width: 6.5rem;
-    height: 6.5rem;
-  }
-  .sidebar.active .avatar-badge {
-    display: none;
-  }
-  .sidebar.active .sidebar-close-btn {
-    display: flex;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 2rem;
-    height: 2rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    color: var(--text-2);
-    border-radius: 0.5rem;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .sidebar.active .sidebar-close-btn:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  /* Info under profile pic: hidden by default in collapsed rail */
   .info-content {
-    display: none;
-    animation: fadeInSlide 0.3s ease forwards;
-  }
-  .sidebar.active .info-content {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
-    margin-top: 0.75rem;
+    gap: 0.35rem;
   }
 
+  .name  { font-size: 1.1rem; margin-top: 0; }
+  .title { font-size: 0.78rem; padding: 0.25rem 0.85rem; }
+
+  /* Show Contacts button — full width, below name/title */
   .info_more-btn {
-    display: none !important;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--surface);
   }
 
+  /* Contact list: hidden by default, expands inline on toggle */
   .sidebar-info_more {
     display: none;
-    animation: fadeInSlide 0.35s ease forwards;
+    padding-bottom: 1.25rem;
   }
   .sidebar.active .sidebar-info_more {
     display: flex;
+    flex-direction: column;
     width: 100%;
   }
 
-  /* Backdrop overlay on mobile */
-  body.sidebar-open .sidebar-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    z-index: 999;
-  }
-
-  .service-list { grid-template-columns: 1fr; }
+  /* Grid adjustments */
+  .service-list     { grid-template-columns: 1fr; }
   .github-stats-row { grid-template-columns: repeat(2, 1fr); }
-  .input-wrapper { grid-template-columns: 1fr; }
+  .input-wrapper    { grid-template-columns: 1fr; }
 }
 
-@keyframes slideDrawer {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* ── Tablet: single-column project grid ─────────────────────── */
 @media (max-width: 720px) {
-  .project-list { grid-template-columns: 1fr; }
+  .project-list   { grid-template-columns: 1fr; }
   .project-img-box { height: 210px; }
 }
 
-/*-----------------------------------*\
-  #RESPONSIVE — MOBILE (<=580px)
-\*-----------------------------------*/
-
+/* ── Small phones ────────────────────────────────────────────── */
 @media (max-width: 580px) {
+  main { padding: 0.75rem; }
+
   .navbar {
     padding: 0.45rem 0.55rem;
     gap: 0.35rem;
   }
   .navbar-list { gap: 0.15rem; }
   .navbar-link { padding: 0.35rem 0.45rem; font-size: 0.72rem; }
-  .theme-toggle {
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.95rem;
-  }
-  .filter-list { display: none; }
+  .theme-toggle { width: 2rem; height: 2rem; font-size: 0.95rem; }
+
+  .filter-list       { display: none; }
   .filter-select-box { display: block; }
+
   .github-stats-row { grid-template-columns: repeat(2, 1fr); }
-  .lc-solved-widget { flex-direction: column; gap: 1.25rem; }
-  .lc-difficulty-stack { width: 100%; flex-direction: row; justify-content: space-between; }
-  .lc-diff-card { flex: 1; text-align: center; }
-  .project-list { grid-template-columns: 1fr; }
+
+  .lc-solved-widget      { flex-direction: column; gap: 1.25rem; }
+  .lc-difficulty-stack   { width: 100%; flex-direction: row; justify-content: space-between; }
+  .lc-diff-card          { flex: 1; text-align: center; }
+
+  .project-list              { grid-template-columns: 1fr; }
   .contribution-graph-wrapper { padding: 0.75rem; }
-  .discord-inner { flex-direction: column; align-items: flex-start; }
+  .discord-inner             { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 360px) {
-  .navbar-link { font-size: 0.6875rem; padding: 0.3rem 0.35rem; }
+  .navbar-link  { font-size: 0.6875rem; padding: 0.3rem 0.35rem; }
   .theme-toggle { width: 1.85rem; height: 1.85rem; font-size: 0.875rem; }
+}
+
+/* ── Animations (kept) ───────────────────────────────────────── */
+@keyframes slideDrawer {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
