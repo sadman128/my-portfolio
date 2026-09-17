@@ -1588,10 +1588,10 @@ textarea.form-input { height: 9.5rem; }
     gap: 1rem;
   }
 
-  /* Sidebar: compact card at the top, centered — same feel as desktop */
+  /* Sidebar: compact card at top, centered */
   .sidebar {
     position: static;
-    padding: 1.5rem 1.25rem 0;
+    padding: 0.9rem 1rem 0.75rem;
     border-radius: 1.25rem;
   }
 
@@ -1600,39 +1600,41 @@ textarea.form-input { height: 9.5rem; }
   .sidebar-overlay    { display: none !important; }
   .avatar-badge       { display: none !important; }
 
-  /* Centered column — same as desktop */
+  /* Centered column */
   .sidebar-info {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 0.6rem;
+    gap: 0.35rem;
   }
 
   .avatar-wrapper { cursor: default; }
   .avatar-wrapper:hover .avatar-box,
   .avatar-wrapper:focus-visible .avatar-box { transform: none; }
 
-  .avatar-box { width: 5rem; height: 5rem; }
+  .avatar-box { width: 4.25rem; height: 4.25rem; }
 
   .info-content {
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.15rem;
   }
+  .info-content br { display: none !important; }
 
-  .name  { font-size: 1.1rem; margin-top: 0; }
-  .title { font-size: 0.78rem; padding: 0.25rem 0.85rem; }
+  .name  { font-size: 1.05rem; margin: 0; line-height: 1.2; }
+  .title { font-size: 0.72rem; padding: 0.15rem 0.7rem; }
 
-  /* Show Contacts button — full width, below name/title */
+  /* Show Contacts button — full width, compact spacing below name/title */
   .info_more-btn {
     display: flex !important;
     width: 100%;
     justify-content: center;
-    margin-top: 0.75rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
+    margin-top: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.6rem;
     background: var(--surface);
+    font-size: 0.75rem;
   }
 
   /* Contact list: hidden by default, expands inline on toggle */
